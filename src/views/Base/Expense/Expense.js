@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardHeader, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Row, TabContent, TabPane } from 'reactstrap';
+import { Badge, Card, CardBody, CardColumns, CardHeader, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Row, TabContent, TabPane } from 'reactstrap';
+import { Bar, Doughnut, Line, Pie, Polar, Radar } from 'react-chartjs-2';
+import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 
+const backgroundColor = [
+  '#FF6384',
+  '#36A2EB',
+  '#FFCE56',
+  '#4BC0C0',
+]
 
+const hoverBackgroundColor = [
+  '#FF6384',
+  '#36A2EB',
+  '#FFCE56',
+  '#4BC0C0',
+]
 
 class Expense extends Component {
 
@@ -12,6 +26,7 @@ class Expense extends Component {
     this.getSum = this.getSum.bind(this);
     this.state = {
       activeTab: 1,
+      groupLabels: ['unsorted expense', 'payroll','operations', 'others'],
       initialGroup: [
         {amt:1200, date:"1 March 2019", to: "xxx-xxx-xxx", descr: "SALARY"},
         {amt:3500, date:"1 March 2019", to: "xxx-xxx-xxx", descr: "SALARY"},
@@ -105,11 +120,55 @@ class Expense extends Component {
     })
   }
 
+  componentWillUpdate(nextProps,nextState){
+    this.unSortedAmt = this.getSum(nextState.initialGroup);
+    this.payrollAmt = this.getSum(nextState.payRollGroup);
+    this.operationAmt = this.getSum(nextState.operationGroup);
+    this.otherAmt = this.getSum(nextState.otherGroup);
+    this.doughnut = {
+      labels: nextState.groupLabels,
+      datasets: [
+        {
+          data: [this.unSortedAmt, this.payrollAmt, this.operationAmt, this.otherAmt],
+          backgroundColor: backgroundColor,
+          hoverBackgroundColor: hoverBackgroundColor,
+        }],
+    };
+  }
+
   render() {
+    this.unSortedAmt = this.getSum(this.state.initialGroup);
+    this.payrollAmt = this.getSum(this.state.payRollGroup);
+    this.operationAmt = this.getSum(this.state.operationGroup);
+    this.otherAmt = this.getSum(this.state.otherGroup);
+    this.doughnut = {
+      labels: this.state.groupLabels,
+      datasets: [
+        {
+          data: [this.unSortedAmt, this.payrollAmt, this.operationAmt, this.otherAmt],
+          backgroundColor: backgroundColor,
+          hoverBackgroundColor: hoverBackgroundColor,
+        }],
+    };
     return (
       <div className="animated fadeIn container">
         <div className="flexbox-item">
           <Col>
+            <Card>
+              <CardHeader>
+                Expense Breakdown
+                <div className="card-header-actions">
+                  <a href="http://www.chartjs.org" className="card-header-action">
+                    <small className="text-muted">docs</small>
+                  </a>
+                </div>
+              </CardHeader>
+              <CardBody>
+                <div className="chart-wrapper">
+                  <Doughnut data={this.doughnut} />
+                </div>
+              </CardBody>
+            </Card>
             <Card className={this.state.targetGroup == "initialGroup"? "outline-class" : null}>
               <CardHeader onClick={()=>this.setTargetGroup("initialGroup")}>
                 <i className="fa fa-align-justify"></i><strong>Unsorted Records</strong>

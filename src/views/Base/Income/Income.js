@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardHeader, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Row, TabContent, TabPane } from 'reactstrap';
+import { Badge, Card, CardBody, CardColumns, CardHeader, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Row, TabContent, TabPane } from 'reactstrap';
+import { Bar, Doughnut, Line, Pie, Polar, Radar } from 'react-chartjs-2';
+import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+
+const backgroundColor = [
+  '#FF6384',
+  '#36A2EB',
+  '#FFCE56',
+  '#4BC0C0',
+]
+
+const hoverBackgroundColor = [
+  '#FF6384',
+  '#36A2EB',
+  '#FFCE56',
+  '#4BC0C0',
+]
 
 class Income extends Component {
 
@@ -10,6 +26,7 @@ class Income extends Component {
     this.getSum = this.getSum.bind(this);
     this.state = {
       activeTab: 1,
+      groupLabels: ['unsorted income', 'product sales','service', 'others'],
       initialGroup: [
         {amt:10000, date:"10 March 2019", to: "xxx-xxx-xxx", descr: "STOCK_PUR"},
         {amt:30000, date:"15 March 2019", to: "xxx-xxx-xxx", descr: "STOCK_PUR"},
@@ -40,6 +57,7 @@ class Income extends Component {
   }
 
   handleListClick(item,sourceName){
+    if(!this.state.targetGroup){return;}
     var sourceGroup = [];
     var targetGroup = [];
     var newSource = [];
@@ -91,25 +109,70 @@ class Income extends Component {
   }
 
   setTargetGroup(groupname){
-    console.log("set target group to " + groupname)
-    this.setState({
-      targetGroup: groupname
-    })
+    if (this.state.targetGroup == groupname){
+      this.setState({
+        targetGroup: null
+      })
+    } else{
+      this.setState({
+        targetGroup: groupname
+      })
+    }
+  }
+
+  componentWillUpdate(nextProps,nextState){
+    this.unSortedAmt = this.getSum(nextState.initialGroup);
+    this.productSaleAmt = this.getSum(nextState.productSaleGroup);
+    this.serviceAmt = this.getSum(nextState.serviceGroup);
+    this.otherAmt = this.getSum(nextState.otherGroup);
+    this.doughnut = {
+      labels: nextState.groupLabels,
+      datasets: [
+        {
+          data: [this.unSortedAmt, this.productSaleAmt, this.serviceAmt, this.otherAmt],
+          backgroundColor: backgroundColor,
+          hoverBackgroundColor: hoverBackgroundColor,
+        }],
+    };
   }
 
   render() {
+    this.unSortedAmt = this.getSum(this.state.initialGroup);
+    this.productSaleAmt = this.getSum(this.state.productSaleGroup);
+    this.serviceAmt = this.getSum(this.state.serviceGroup);
+    this.otherAmt = this.getSum(this.state.otherGroup);
+    this.doughnut = {
+      labels: this.state.groupLabels,
+      datasets: [
+        {
+          data: [this.unSortedAmt, this.productSaleAmt, this.serviceAmt, this.otherAmt],
+          backgroundColor: backgroundColor,
+          hoverBackgroundColor: hoverBackgroundColor,
+        }],
+    };
+
     return (
       <div className="animated fadeIn container">
         <div className="flexbox-item">
           <Col>
-            <Card className={this.state.targetGroup == "initialGroup"? "outline-class" : null}>
-              <CardHeader onClick={()=>this.setTargetGroup("initialGroup")}>
-                <i className="fa fa-align-justify"></i><strong>Unsorted Records</strong>
+            <Card>
+              <CardHeader>
+                Income Breakdown
                 <div className="card-header-actions">
-                  <a href="https://reactstrap.github.io/components/listgroup/" rel="noreferrer noopener" target="_blank" className="card-header-action">
+                  <a href="http://www.chartjs.org" className="card-header-action">
                     <small className="text-muted">docs</small>
                   </a>
                 </div>
+              </CardHeader>
+              <CardBody>
+                <div className="chart-wrapper">
+                  <Doughnut data={this.doughnut} />
+                </div>
+              </CardBody>
+            </Card>
+            <Card className={this.state.targetGroup == "initialGroup"? "outline-class" : null}>
+              <CardHeader onClick={()=>this.setTargetGroup("initialGroup")}>
+                <i className="fa fa-align-justify"></i><strong>Unsorted Income</strong>
               </CardHeader>
               <CardBody>
                 <ListGroup>
@@ -134,7 +197,7 @@ class Income extends Component {
                   }
                 </ListGroup>
               </CardBody>
-              <CardHeader className="text-expense">Total Income: ${this.getSum(this.state.initialGroup)} </CardHeader>
+              <CardHeader className="text-expense">Total Income: ${this.unSortedAmt} </CardHeader>
             </Card>
           </Col>
         </div>
@@ -144,11 +207,6 @@ class Income extends Component {
               <Card className={this.state.targetGroup == "productSaleGroup"? "outline-class" : null}>
               <CardHeader  onClick={()=>this.setTargetGroup("productSaleGroup")}>
               <i className="fa fa-align-justify"></i><strong>Product Sales</strong>
-              <div className="card-header-actions">
-              <a href="https://reactstrap.github.io/components/listgroup/" rel="noreferrer noopener" target="_blank" className="card-header-action">
-              <small className="text-muted">docs</small>
-              </a>
-              </div>
               </CardHeader>
               <CardBody>
               <ListGroup>
@@ -173,18 +231,13 @@ class Income extends Component {
               }
               </ListGroup>
               </CardBody>
-              <CardHeader className="text-expense">Total Income: ${this.getSum(this.state.productSaleGroup)} </CardHeader>
+              <CardHeader className="text-expense">Total Income: ${this.productSaleAmt} </CardHeader>
               </Card>
             </Row>
             <Row>
               <Card className={this.state.targetGroup == "serviceGroup"? "outline-class" : null}>
               <CardHeader  onClick={()=>this.setTargetGroup("serviceGroup")}>
               <i className="fa fa-align-justify"></i><strong>Service</strong>
-              <div className="card-header-actions">
-              <a href="https://reactstrap.github.io/components/listgroup/" rel="noreferrer noopener" target="_blank" className="card-header-action">
-              <small className="text-muted">docs</small>
-              </a>
-              </div>
               </CardHeader>
               <CardBody>
               <ListGroup>
@@ -209,18 +262,13 @@ class Income extends Component {
               }
               </ListGroup>
               </CardBody>
-              <CardHeader className="text-expense">Total Income: ${this.getSum(this.state.serviceGroup)} </CardHeader>
+              <CardHeader className="text-expense">Total Income: ${this.serviceAmt} </CardHeader>
               </Card>
             </Row>
             <Row>
               <Card className={this.state.targetGroup == "otherGroup"? "outline-class" : null}>
               <CardHeader  onClick={()=>this.setTargetGroup("otherGroup")}>
               <i className="fa fa-align-justify"></i><strong>Other</strong>
-              <div className="card-header-actions">
-              <a href="https://reactstrap.github.io/components/listgroup/" rel="noreferrer noopener" target="_blank" className="card-header-action">
-              <small className="text-muted">docs</small>
-              </a>
-              </div>
               </CardHeader>
               <CardBody>
               <ListGroup>
@@ -245,7 +293,7 @@ class Income extends Component {
               }
               </ListGroup>
               </CardBody>
-              <CardHeader className="text-expense">Total Income: ${this.getSum(this.state.otherGroup)} </CardHeader>
+              <CardHeader className="text-expense">Total Income: ${this.otherAmt} </CardHeader>
               </Card>
             </Row>
           </Col>
