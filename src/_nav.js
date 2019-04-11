@@ -151,11 +151,11 @@ export default {
     //     },
     //   ],
     // },
-  //   {
-  //     name: 'Charts',
-  //     url: '/charts',
-  //     icon: 'icon-pie-chart',
-  //   },
+    {
+      name: 'Charts',
+      url: '/charts',
+      icon: 'icon-pie-chart',
+    },
   //   {
   //     name: 'Icons',
   //     url: '/icons',
