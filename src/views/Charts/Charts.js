@@ -91,7 +91,7 @@ const radar = {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(255,99,132,1)',
-      data: [8, 6, 5, 6, 10],
+      data: [4, 6, 6, 8, 10],
     },
   ],
 };
@@ -123,10 +123,10 @@ const polar = {
     {
       data: [
         2900,
-        3600,
+        5900,
         4000,
         4600,
-        5900,
+        3600,
       ],
       backgroundColor: [
         '#FF6384',
@@ -164,7 +164,7 @@ class Charts extends Component {
               Line Chart
               <div className="card-header-actions">
                 <a href="http://www.chartjs.org" className="card-header-action">
-                  <small className="text-muted">docs</small>
+                  <big className="text-muted">docs</big>
                 </a>
               </div>
             </CardHeader>
