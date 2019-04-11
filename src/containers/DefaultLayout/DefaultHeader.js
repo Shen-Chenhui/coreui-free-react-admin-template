@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import {Badge, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem} from 'reactstrap';
+import {Button, Badge, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem} from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import {AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler} from '@coreui/react';
@@ -37,6 +37,9 @@ class DefaultHeader extends Component {
           </NavItem>
         </Nav>
         <Nav className="ml-auto" navbar>
+          <NavItem className="d-md-down-none text-padding" >
+            <Button active block color="dark" aria-pressed="true">Talk to US</Button>
+          </NavItem>
           <NavItem className="d-md-down-none">
             Welcome Bibi
           </NavItem>

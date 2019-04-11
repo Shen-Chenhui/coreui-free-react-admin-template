@@ -98,7 +98,7 @@ class Expense extends Component {
         break;
     }
 
-    if (sourceGroup == targetGroup){return;}
+    if (sourceGroup === targetGroup){return;}
     var index = sourceGroup.indexOf(item)
     if (index > -1){
       newSource = [...sourceGroup.slice(0,index),...sourceGroup.slice(index+1)];
@@ -169,7 +169,7 @@ class Expense extends Component {
                 </div>
               </CardBody>
             </Card>
-            <Card className={this.state.targetGroup == "initialGroup"? "outline-class" : null}>
+            <Card className={this.state.targetGroup === "initialGroup"? "outline-class" : null}>
               <CardHeader onClick={()=>this.setTargetGroup("initialGroup")}>
                 <i className="fa fa-align-justify"></i><strong>Unsorted Records</strong>
                 <div className="card-header-actions">
@@ -208,7 +208,7 @@ class Expense extends Component {
         <div className="flexbox-item">
           <Col>
             <Row>
-              <Card className={this.state.targetGroup == "payRollGroup"? "outline-class" : null}>
+              <Card className={this.state.targetGroup === "payRollGroup"? "outline-class" : null}>
               <CardHeader  onClick={()=>this.setTargetGroup("payRollGroup")}>
               <i className="fa fa-align-justify"></i><strong>Pay Roll</strong>
               <div className="card-header-actions">
@@ -244,7 +244,7 @@ class Expense extends Component {
               </Card>
             </Row>
             <Row>
-              <Card className={this.state.targetGroup == "operationGroup"? "outline-class" : null}>
+              <Card className={this.state.targetGroup === "operationGroup"? "outline-class" : null}>
               <CardHeader  onClick={()=>this.setTargetGroup("operationGroup")}>
               <i className="fa fa-align-justify"></i><strong>Operation</strong>
               <div className="card-header-actions">
@@ -280,7 +280,7 @@ class Expense extends Component {
               </Card>
             </Row>
             <Row>
-              <Card className={this.state.targetGroup == "otherGroup"? "outline-class" : null}>
+              <Card className={this.state.targetGroup === "otherGroup"? "outline-class" : null}>
               <CardHeader  onClick={()=>this.setTargetGroup("otherGroup")}>
               <i className="fa fa-align-justify"></i><strong>Other</strong>
               <div className="card-header-actions">

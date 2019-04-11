@@ -33,8 +33,8 @@ export default {
     //   },
     // },
     {
-      name: 'Base',
-      url: '/base',
+      name: 'Work Station',
+      url: '/workstation',
       icon: 'icon-puzzle',
       children: [
         // {
