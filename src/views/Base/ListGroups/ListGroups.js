@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { Badge, Card, CardBody, CardHeader, Col, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Row, TabContent, TabPane } from 'reactstrap';
 
+
+
 class ListGroups extends Component {
 
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.getSum = this.getSum.bind(this);
     this.state = {
-      activeTab: 1
+      activeTab: 1,
+      initialGroup: [
+        {amt:1200, date:"1 March 2019", to: "xxx", descr: "SALARY"},
+        {amt:3500, date:"1 March 2019", to: "xxx", descr: "SALARY"}
+      ],
+      payRollGroup: [
+       {amt:5000, date:"1 March 2019", to: "xxx", descr: "SALARY"},
+       {amt:3500, date:"1 March 2019", to: "xxx", descr: "SALARY"},
+       {amt:6000, date:"1 March 2019", to: "xxx", descr: "SALARY"}],
+      targetGroup: null,
     };
   }
 
@@ -20,14 +32,68 @@ class ListGroups extends Component {
     }
   }
 
+  getSum(group) {
+    var sum = 0;
+    for(var i=0; i<group.length; i++){
+      sum += group[i].amt
+    }
+    return sum;
+  }
+
+  handleListClick(item,sourceName){
+    var sourceGroup = [];
+    var targetGroup = [];
+    var newSource = [];
+    var newTarget = [];
+    // determin source group
+    switch (sourceName){
+      case "initialGroup":
+      sourceGroup = this.state.initialGroup;
+      break;
+      case "payRollGroup":
+      sourceGroup = this.state.payRollGroup;
+      break;
+    }
+    // determin target group
+    switch (this.state.targetGroup){
+      case "initialGroup":
+      targetGroup = this.state.initialGroup;
+      break;
+      case "payRollGroup":
+      targetGroup = this.state.payRollGroup;
+      break;
+    }
+
+    if (sourceGroup == targetGroup){return;}
+    var index = sourceGroup.indexOf(item)
+    if (index > -1){
+      newSource = [...sourceGroup.slice(0,index),...sourceGroup.slice(index+1)];
+      newTarget = targetGroup.concat(item);
+    }
+
+    this.setState({
+      [sourceName]: newSource,
+      [this.state.targetGroup]: newTarget
+    }
+    );
+    console.log(newSource, newTarget)
+  }
+
+  setTargetGroup(groupname){
+    console.log("set target group to " + groupname)
+    this.setState({
+      targetGroup: groupname
+    })
+  }
+
   render() {
     return (
       <div className="animated fadeIn">
         <Row>
           <Col sm="12" xl="6">
-            <Card>
-              <CardHeader>
-                <i className="fa fa-align-justify"></i><strong>List Group</strong>
+            <Card className={this.state.targetGroup == "initialGroup"? "outline-class" : null}>
+              <CardHeader onClick={()=>this.setTargetGroup("initialGroup")}>
+                <i className="fa fa-align-justify"></i><strong>Unsorted Records</strong>
                 <div className="card-header-actions">
                   <a href="https://reactstrap.github.io/components/listgroup/" rel="noreferrer noopener" target="_blank" className="card-header-action">
                     <small className="text-muted">docs</small>
@@ -36,16 +102,54 @@ class ListGroups extends Component {
               </CardHeader>
               <CardBody>
                 <ListGroup>
-                  <ListGroupItem>Cras justo odio</ListGroupItem>
-                  <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                  <ListGroupItem>Morbi leo risus</ListGroupItem>
-                  <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-                  <ListGroupItem>Vestibulum at eros</ListGroupItem>
+                  { this.state.initialGroup.map( (item) =>(
+                        <ListGroupItem onClick={()=>this.handleListClick(item,"initialGroup")}>
+                          <Row>
+                            <Col> ${item.amt} </Col>
+                            <Col> Date: {item.date} </Col>
+                            <Col> To: {item.to}</Col>
+                            <Col> Descr: {item.descr}</Col>
+                          </Row>
+                        </ListGroupItem>
+                      ))
+                  }
                 </ListGroup>
               </CardBody>
+              <CardHeader className="text-expense">Total Expense: ${this.getSum(this.state.initialGroup)} </CardHeader>
             </Card>
           </Col>
+
           <Col sm="12" xl="6">
+            <Card className={this.state.targetGroup == "payRollGroup"? "outline-class" : null}>
+              <CardHeader  onClick={()=>this.setTargetGroup("payRollGroup")}>
+                <i className="fa fa-align-justify"></i><strong>Pay Roll</strong>
+                <div className="card-header-actions">
+                  <a href="https://reactstrap.github.io/components/listgroup/" rel="noreferrer noopener" target="_blank" className="card-header-action">
+                    <small className="text-muted">docs</small>
+                  </a>
+                </div>
+              </CardHeader>
+              <CardBody>
+                <ListGroup>
+                  { this.state.payRollGroup.map( (item) =>(
+                        <ListGroupItem onClick={()=>this.handleListClick(item,"payRollGroup")}>
+                          <Row>
+                            <Col> ${item.amt} </Col>
+                            <Col> Date: {item.date} </Col>
+                            <Col> To: {item.to}</Col>
+                            <Col> Descr: {item.descr}</Col>
+                          </Row>
+                        </ListGroupItem>
+                      ))
+                  }
+                </ListGroup>
+              </CardBody>
+              <CardHeader className="text-expense">Total Expense: ${this.getSum(this.state.payRollGroup)} </CardHeader>
+            </Card>
+          </Col>
+
+          <Col sm="12" xl="6">
+
             <Card>
               <CardHeader>
                 <i className="fa fa-align-justify"></i><strong>List Group</strong>
