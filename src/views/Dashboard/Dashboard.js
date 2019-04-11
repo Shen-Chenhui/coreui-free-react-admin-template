@@ -559,7 +559,7 @@ class Dashboard extends Component {
           </Col>
 
           <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-danger">
+            <Card className="text-white bg-primary">
               <CardBody className="pb-0">
                 <ButtonGroup className="float-right">
                   <ButtonDropdown id='card4' isOpen={this.state.card4} toggle={() => { this.setState({ card4: !this.state.card4 }); }}>
@@ -573,8 +573,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </ButtonDropdown>
                 </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <div className="text-value">+$12,833</div>
+                <div>Change from Previous Month</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
