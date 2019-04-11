@@ -588,8 +588,8 @@ class Dashboard extends Component {
               <CardBody>
                 <Row>
                   <Col sm="5">
-                    <CardTitle className="mb-0">Monthly Trend</CardTitle>
-                    <div className="small text-muted">Year:2018</div>
+                    <CardTitle className="mb-0">Monthly Sales</CardTitle>
+                    <div className="small text-muted">2018</div>
                   </Col>
                   <Col sm="7" className="d-none d-sm-inline-block">
                     <Button color="primary" className="float-right"><i className="icon-cloud-download"></i></Button>

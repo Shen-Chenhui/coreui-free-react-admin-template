@@ -7,7 +7,7 @@ const line = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: 'My First dataset',
+      label: 'Revenue',
       fill: false,
       lineTension: 0.1,
       backgroundColor: 'rgba(75,192,192,0.4)',
@@ -47,22 +47,25 @@ const bar = {
 
 const doughnut = {
   labels: [
-    'Red',
-    'Green',
-    'Yellow',
+    'Payroll',
+    'Operations',
+    'Others',
+    'Imports'
   ],
   datasets: [
     {
-      data: [300, 50, 100],
+      data: [23000, 12550, 9100, 6220],
       backgroundColor: [
         '#FF6384',
         '#36A2EB',
         '#FFCE56',
+        '#4BC0C0',
       ],
       hoverBackgroundColor: [
         '#FF6384',
         '#36A2EB',
         '#FFCE56',
+        '#4BC0C0',
       ],
     }],
 };
@@ -95,9 +98,9 @@ const radar = {
 
 const pie = {
   labels: [
-    'Red',
-    'Green',
-    'Yellow',
+    'Product Sales',
+    'Service',
+    'Others',
   ],
   datasets: [
     {
@@ -119,11 +122,11 @@ const polar = {
   datasets: [
     {
       data: [
-        11,
-        16,
-        7,
-        3,
-        14,
+        2900,
+        3600,
+        4000,
+        4600,
+        5900,
       ],
       backgroundColor: [
         '#FF6384',
@@ -135,11 +138,11 @@ const polar = {
       label: 'My dataset' // for legend
     }],
   labels: [
-    'Red',
-    'Green',
-    'Yellow',
-    'Grey',
-    'Blue',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
   ],
 };
 
@@ -188,7 +191,7 @@ class Charts extends Component {
           </Card>
           <Card>
             <CardHeader>
-              Doughnut Chart
+              Expense Breakdown
               <div className="card-header-actions">
                 <a href="http://www.chartjs.org" className="card-header-action">
                   <small className="text-muted">docs</small>
@@ -218,7 +221,7 @@ class Charts extends Component {
           </Card>
           <Card>
             <CardHeader>
-              Pie Chart
+              Revenue Breakdown
               <div className="card-header-actions">
                 <a href="http://www.chartjs.org" className="card-header-action">
                   <small className="text-muted">docs</small>
@@ -233,7 +236,7 @@ class Charts extends Component {
           </Card>
           <Card>
             <CardHeader>
-              Polar Area Chart
+            Sales By Days
               <div className="card-header-actions">
                 <a href="http://www.chartjs.org" className="card-header-action">
                   <small className="text-muted">docs</small>

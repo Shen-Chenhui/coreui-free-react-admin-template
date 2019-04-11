@@ -38,7 +38,7 @@ class DefaultHeader extends Component {
         </Nav>
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
-            Welcome Rachel
+            Welcome Bibi
           </NavItem>
           <AppHeaderDropdown direction="down">
             <DropdownToggle nav>
