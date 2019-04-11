@@ -7,7 +7,8 @@ const Collapses = React.lazy(() => import('./views/Base/Collapses'));
 const Dropdowns = React.lazy(() => import('./views/Base/Dropdowns'));
 const Forms = React.lazy(() => import('./views/Base/Forms'));
 const Jumbotrons = React.lazy(() => import('./views/Base/Jumbotrons'));
-const ListGroups = React.lazy(() => import('./views/Base/ListGroups'));
+const Expense = React.lazy(() => import('./views/Base/Expense'));
+const Income = React.lazy(() => import('./views/Base/Income'));
 const Navbars = React.lazy(() => import('./views/Base/Navbars'));
 const Navs = React.lazy(() => import('./views/Base/Navs'));
 const Paginations = React.lazy(() => import('./views/Base/Paginations'));
@@ -54,7 +55,8 @@ const routes = [
   { path: '/base/collapses', name: 'Collapse', component: Collapses },
   { path: '/base/dropdowns', name: 'Dropdowns', component: Dropdowns },
   { path: '/base/jumbotrons', name: 'Jumbotrons', component: Jumbotrons },
-  { path: '/base/list-groups', name: 'List Groups', component: ListGroups },
+  { path: '/base/expense', name: 'Expense', component: Expense },
+  { path: '/base/income', name: 'Income', component: Income },
   { path: '/base/navbars', name: 'Navbars', component: Navbars },
   { path: '/base/navs', name: 'Navs', component: Navs },
   { path: '/base/paginations', name: 'Paginations', component: Paginations },

@@ -6,7 +6,8 @@ import {
   Dropdowns,
   Forms,
   Jumbotrons,
-  ListGroups,
+  Expense,
+  Income,
   Navbars,
   Navs,
   Paginations,
@@ -57,7 +58,8 @@ export {
   Popovers,
   Navs,
   Navbars,
-  ListGroups,
+  Expense,
+  Income,
   Forms,
   Dropdowns,
   Collapses,
@@ -66,4 +68,3 @@ export {
   Breadcrumbs,
   Paginations,
 };
-
