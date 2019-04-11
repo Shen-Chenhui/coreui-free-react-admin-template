@@ -4,7 +4,7 @@ import {Badge, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem} from 'r
 import PropTypes from 'prop-types';
 
 import {AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler} from '@coreui/react';
-import logo from '../../assets/img/brand/logo.svg'
+import logo from '../../assets/img/brand/Mizrahi_Tefahot_logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 
 const propTypes = {
@@ -38,7 +38,7 @@ class DefaultHeader extends Component {
         </Nav>
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
-            Welcome Rachel
+            Welcome Bibi
           </NavItem>
           <AppHeaderDropdown direction="down">
             <DropdownToggle nav>

@@ -7,7 +7,7 @@ const line = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: 'My First dataset',
+      label: 'Net Profit',
       fill: false,
       lineTension: 0.1,
       backgroundColor: 'rgba(75,192,192,0.4)',
@@ -25,7 +25,7 @@ const line = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 59, 80000000, 81, 56, 55, 40],
+      data: [55000, 63000, 58000, 65000, 56000, 50000, 46000],
     },
   ],
 };
@@ -34,70 +34,73 @@ const bar = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: 'My First dataset',
+      label: 'Count of Customers Complaints',
       backgroundColor: 'rgba(255,99,132,0.2)',
       borderColor: 'rgba(255,99,132,1)',
       borderWidth: 1,
       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
       hoverBorderColor: 'rgba(255,99,132,1)',
-      data: [65, 59, 80, 81, 56, 55, 40],
+      data: [5, 5, 8, 6, 10, 13, 16],
     },
   ],
 };
 
 const doughnut = {
   labels: [
-    'Red',
-    'Green',
-    'Yellow',
+    'Payroll',
+    'Operations',
+    'Others',
+    'Imports'
   ],
   datasets: [
     {
-      data: [300, 50, 100],
+      data: [23000, 12550, 9100, 6220],
       backgroundColor: [
         '#FF6384',
         '#36A2EB',
         '#FFCE56',
+        '#4BC0C0',
       ],
       hoverBackgroundColor: [
         '#FF6384',
         '#36A2EB',
         '#FFCE56',
+        '#4BC0C0',
       ],
     }],
 };
 
 const radar = {
-  labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+  labels: ['Slow Response', 'Late Delivery', 'Poor Customer Support', 'Bad Product Quality', 'No Stock'],
   datasets: [
+    // {
+    //   label: 'My First dataset',
+    //   backgroundColor: 'rgba(179,181,198,0.2)',
+    //   borderColor: 'rgba(179,181,198,1)',
+    //   pointBackgroundColor: 'rgba(179,181,198,1)',
+    //   pointBorderColor: '#fff',
+    //   pointHoverBackgroundColor: '#fff',
+    //   pointHoverBorderColor: 'rgba(179,181,198,1)',
+    //   data: [65, 59, 90, 81, 56, 55, 40],
+    // },
     {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(179,181,198,0.2)',
-      borderColor: 'rgba(179,181,198,1)',
-      pointBackgroundColor: 'rgba(179,181,198,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(179,181,198,1)',
-      data: [65, 59, 90, 81, 56, 55, 40],
-    },
-    {
-      label: 'My Second dataset',
+      label: 'Count of Complaints',
       backgroundColor: 'rgba(255,99,132,0.2)',
       borderColor: 'rgba(255,99,132,1)',
       pointBackgroundColor: 'rgba(255,99,132,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(255,99,132,1)',
-      data: [28, 48, 40, 19, 96, 27, 100],
+      data: [4, 6, 6, 8, 10],
     },
   ],
 };
 
 const pie = {
   labels: [
-    'Red',
-    'Green',
-    'Yellow',
+    'Product Sales',
+    'Service',
+    'Others',
   ],
   datasets: [
     {
@@ -119,11 +122,11 @@ const polar = {
   datasets: [
     {
       data: [
-        11,
-        16,
-        7,
-        3,
-        14,
+        2900,
+        5900,
+        4000,
+        4600,
+        3600,
       ],
       backgroundColor: [
         '#FF6384',
@@ -135,11 +138,11 @@ const polar = {
       label: 'My dataset' // for legend
     }],
   labels: [
-    'Red',
-    'Green',
-    'Yellow',
-    'Grey',
-    'Blue',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
   ],
 };
 
@@ -161,7 +164,7 @@ class Charts extends Component {
               Line Chart
               <div className="card-header-actions">
                 <a href="http://www.chartjs.org" className="card-header-action">
-                  <small className="text-muted">docs</small>
+                  <big className="text-muted">docs</big>
                 </a>
               </div>
             </CardHeader>
@@ -173,22 +176,7 @@ class Charts extends Component {
           </Card>
           <Card>
             <CardHeader>
-              Bar Chart
-              <div className="card-header-actions">
-                <a href="http://www.chartjs.org" className="card-header-action">
-                  <small className="text-muted">docs</small>
-                </a>
-              </div>
-            </CardHeader>
-            <CardBody>
-              <div className="chart-wrapper">
-                <Bar data={bar} options={options} />
-              </div>
-            </CardBody>
-          </Card>
-          <Card>
-            <CardHeader>
-              Doughnut Chart
+              Expense Breakdown
               <div className="card-header-actions">
                 <a href="http://www.chartjs.org" className="card-header-action">
                   <small className="text-muted">docs</small>
@@ -203,7 +191,7 @@ class Charts extends Component {
           </Card>
           <Card>
             <CardHeader>
-              Radar Chart
+            Breakdown of Customer Complaints
               <div className="card-header-actions">
                 <a href="http://www.chartjs.org" className="card-header-action">
                   <small className="text-muted">docs</small>
@@ -218,7 +206,7 @@ class Charts extends Component {
           </Card>
           <Card>
             <CardHeader>
-              Pie Chart
+              Revenue Breakdown
               <div className="card-header-actions">
                 <a href="http://www.chartjs.org" className="card-header-action">
                   <small className="text-muted">docs</small>
@@ -233,7 +221,7 @@ class Charts extends Component {
           </Card>
           <Card>
             <CardHeader>
-              Polar Area Chart
+            Sales By Days
               <div className="card-header-actions">
                 <a href="http://www.chartjs.org" className="card-header-action">
                   <small className="text-muted">docs</small>
@@ -243,6 +231,21 @@ class Charts extends Component {
             <CardBody>
               <div className="chart-wrapper">
                 <Polar data={polar} options={options}/>
+              </div>
+            </CardBody>
+          </Card>
+          <Card>
+            <CardHeader>
+              Monthly Customers Complaint
+              <div className="card-header-actions">
+                <a href="http://www.chartjs.org" className="card-header-action">
+                  <small className="text-muted">docs</small>
+                </a>
+              </div>
+            </CardHeader>
+            <CardBody>
+              <div className="chart-wrapper">
+                <Bar data={bar} options={options} />
               </div>
             </CardBody>
           </Card>
