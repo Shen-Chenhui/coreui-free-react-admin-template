@@ -38,7 +38,7 @@ class DefaultHeader extends Component {
         </Nav>
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none text-padding" >
-            <Button active block color="dark" aria-pressed="true">Talk to US</Button>
+            <Button active block color="dark" aria-pressed="true">Talk to Us</Button>
           </NavItem>
           <NavItem className="d-md-down-none">
             Welcome Bibi

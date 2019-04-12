@@ -792,7 +792,7 @@ class Dashboard extends Component {
                     <td>
                       <div>Agapetus Tadeáš</div>
                       <div className="small text-muted">
-                        <span>New</span> | Registered: Jan 1, 2015
+                        <span></span> | Registered: Aug 8, 2017
                       </div>
                     </td>
                     <td className="text-center">
@@ -827,7 +827,7 @@ class Dashboard extends Component {
                     <td>
                       <div>Friderik Dávid</div>
                       <div className="small text-muted">
-                        <span>New</span> | Registered: Jan 1, 2015
+                        <span>Operations Manager</span> | Registered: Oct 8, 2018
                       </div>
                     </td>
                     <td className="text-center">
